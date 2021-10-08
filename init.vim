@@ -3,9 +3,10 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'petRUShka/vim-sage'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'machakann/vim-sandwich'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'rafi/awesome-vim-colorschemes'
+Plug 'itchyny/lightline.vim'
+Plug 'vim-scripts/vim-webdevicons'
+Plug 'tpope/vim-fugitive'
 call plug#end()
 
 inoremap <silent><expr> <TAB>
@@ -22,7 +23,7 @@ endfunction
 function! BufNr() abort
 	let l:bufnr = bufnr('%')
 	let l:bufnr = l:bufnr > 20 ? l:bufnr : nr2char(9311 + l:bufnr).' '
-	return '  '.l:bufnr."  ".winnr().' '
+	return '  '.l:bufnr."  ".winnr().' '
 endfunction
 
 function! FileType() abort
@@ -35,44 +36,49 @@ function! GitBranch() abort
 	return strlen(_) ? _.'  ' : ''
 endfunction
 
-let g:airline#extensions#tabline#enabled = 1
-"let g:airline_theme='raven'
-"let g:airline_theme='jet'
-"let g:airline_theme='atomic'
-"let g:airline_theme='desertink'
-"let g:airline_theme='monochrome'
-"let g:airline_theme='peaksea'
-"let g:airline_theme='solarized'
-"let g:airline_theme='term'
-let g:airline_theme='violet'
-
-function! AirlineInit()
-    let g:airline_section_a = airline#section#create(['mode',' ','branch'])
-    let g:airline_section_b = airline#section#create_left(['ffenc','hunks','%f'])
-    let g:airline_section_c = airline#section#create(['filetype'])
-    let g:airline_section_x = airline#section#create(['%P'])
-    let g:airline_section_y = airline#section#create(['%B'])
-    let g:airline_section_z = airline#section#create_right(['%l', '%c'])
-endfunction
-autocmd VimEnter * call AirlineInit()
-
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
+" Lightline settings
+let g:lightline = {
+    \ 'colorscheme': 'seoul256',
+    \ 'active': {
+    \   'left': [ [ 'bufnr' ],
+    \           [ 'mode', 'paste' ],
+    \           [ 'filetype', 'gitbranch', 'readonly', 'modified' ] ],
+    \   'right': [ [ 'lineinfo' ],
+    \            [ 'percent' ],
+    \            [ 'fileencoding' ] ]
+    \},
+    \ 'inactive': {
+    \   'left': [ [ 'bufnr' ],
+    \             [ 'readonly', 'filename', 'modified' ] ]
+    \ },
+    \ 'component_function': {
+    \	  'bufnr': 'BufNr',
+    \   'gitbranch': 'GitBranch',
+    \   'filetype': 'FileType',
+    \ },
+    \ 'component': {
+    \   'readonly': '%{&readonly?"":""}',
+    \   'fileencoding' : '%{&fileencoding} %{WebDevIconsGetFileFormatSymbol()}'
+    \ },
+    \ 'separator': { 'left': '', 'right': '' },
+    \ 'subseparator': { 'left': '', 'right': '' },
+    \ 'mode_map': {
+    \ 'n' : '<N>',
+    \ 'i' : '<I>',
+    \ 'R' : '<R>',
+    \ 'v' : '<V>',
+    \ 'V' : '<Vl>',
+    \ "\<C-v>": '<Vb>',
+    \ 'c' : '<C>',
+    \ 's' : '<S>',
+    \ 'S' : '<Sl>',
+    \ "\<C-s>": '<Sb>',
+    \ 't': '<T>',
+    \ },
+\ }
 
 " Use <c-space> to trigger completion
 inoremap <silent><expr> <c-space> coc#refresh()
-
-" powerline symbols
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = '☰'
-let g:airline_symbols.maxlinenr = ''
-let g:airline_symbols.dirty='⚡'
 
 " Nvim behaviour
 syntax on
@@ -99,7 +105,7 @@ set updatetime=300
 set shortmess+=c
 set signcolumn=yes
 set cursorline
-colorscheme dogrun
+colorscheme lucius
 
 " Custom Shortcuts
 nmap D d$
@@ -146,5 +152,6 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR
 "Coc config
 let g:coc_global_extensions = [
             \ 'coc-json',
-            \ 'coc-clangd'
+            \ 'coc-clangd',
+            \ 'coc-java'
             \]
