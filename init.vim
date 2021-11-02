@@ -7,6 +7,21 @@ Plug 'rafi/awesome-vim-colorschemes'
 Plug 'itchyny/lightline.vim'
 Plug 'vim-scripts/vim-webdevicons'
 Plug 'tpope/vim-fugitive'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+    map <space>b :Buffers<CR>
+    map <space>f :GFiles<CR>
+    map <space>m :Marks<CR>
+    map <space>l :Lines<CR>
+    map <space>g :Rg<CR>
+    map <space>t :BTags<CR>
+    map <space>p :Tags<CR>
+Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
+    map <space>e :Clap filer<CR>
+    map <space>j :Clap jumps<CR>
+    map <space>w :Clap windows<CR>
+    map <space>y :Clap yanks<CR>
+Plug 'joshdick/onedark.vim',
 call plug#end()
 
 inoremap <silent><expr> <TAB>
@@ -23,7 +38,7 @@ endfunction
 function! BufNr() abort
 	let l:bufnr = bufnr('%')
 	let l:bufnr = l:bufnr > 20 ? l:bufnr : nr2char(9311 + l:bufnr).' '
-	return '  '.l:bufnr."  ".winnr().' '
+	return '  '.l:bufnr."  ".winnr().' '
 endfunction
 
 function! FileType() abort
@@ -38,7 +53,7 @@ endfunction
 
 " Lightline settings
 let g:lightline = {
-    \ 'colorscheme': 'seoul256',
+    \ 'colorscheme': 'onedark',
     \ 'active': {
     \   'left': [ [ 'bufnr' ],
     \           [ 'mode', 'paste' ],
@@ -105,7 +120,7 @@ set updatetime=300
 set shortmess+=c
 set signcolumn=yes
 set cursorline
-colorscheme lucius
+colorscheme onedark
 
 " Custom Shortcuts
 nmap D d$
