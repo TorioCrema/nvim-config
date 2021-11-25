@@ -17,3 +17,5 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 
 ### Install plugins with vim-plug
 Open nvim and run the following command: `:PlugInstall`
+
+All default coc plugins will install automatically.
