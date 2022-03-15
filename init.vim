@@ -2,8 +2,8 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'petRUShka/vim-sage'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
-Plug 'machakann/vim-sandwich'
 Plug 'rafi/awesome-vim-colorschemes'
+Plug 'machakann/vim-sandwich'
 Plug 'itchyny/lightline.vim'
 Plug 'vim-scripts/vim-webdevicons'
 Plug 'tpope/vim-fugitive'
@@ -165,6 +165,7 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR
 
 
 "Coc config
+let g:coc_node_path = '/home/torio/.nvm/versions/node/v16.13.0/bin/node'
 let g:coc_global_extensions = [
             \ 'coc-json',
             \ 'coc-clangd',
