@@ -165,7 +165,7 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR
 
 
 "Coc config
-let g:coc_node_path = '/home/torio/.nvm/versions/node/v16.13.0/bin/node'
+let g:coc_node_path = '/usr/bin/node'
 let g:coc_global_extensions = [
             \ 'coc-json',
             \ 'coc-clangd',
