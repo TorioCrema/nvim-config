@@ -3,6 +3,12 @@
 
 My neovim config.
 To use it make sure to have the requirements from all plugins, such as nodejs which is required to use coc; and install vim-plug to manage the plugins.
+`https://deb.nodesource.com/setup_16.x` is a useful script to install node version 16.
+```
+curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+sudo apt install -y nodejs
+```
+For ubuntu-like distros.
 
 ## Installation
 ### Install  vim-plug
