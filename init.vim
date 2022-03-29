@@ -7,6 +7,7 @@ Plug 'machakann/vim-sandwich'
 Plug 'itchyny/lightline.vim'
 Plug 'vim-scripts/vim-webdevicons'
 Plug 'tpope/vim-fugitive'
+Plug 'cohama/lexima.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
     map <space>b :Buffers<CR>
